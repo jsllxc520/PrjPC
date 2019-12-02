@@ -26,5 +26,55 @@ namespace AudioLab
         {
             this.InitializeComponent();
         }
+
+        private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        {
+            if (args.IsSettingsInvoked)
+            {
+                ContentFrame.Navigate(typeof(SettingPage));
+            }
+            else
+            {
+                //find NavigationViewItem with Content that equals InvokedItem
+               var item = sender.MenuItems.OfType<NavigationViewItem>().First(x => (string)x.Content == (string)args.InvokedItem);
+                NavView_Navigate(item as NavigationViewItem);
+            }
+        }
+
+        private void NavView_Navigate(NavigationViewItem item)
+        {
+            switch (item.Tag)
+            {
+                case "home":
+                    ContentFrame.Navigate(typeof(HomePage));
+                    break;
+
+                case "apps":
+                    //ContentFrame.Navigate(typeof(AppsPage));
+                    break;
+
+                case "games":
+                    //ContentFrame.Navigate(typeof(GamesPage));
+                    break;
+
+                case "music":
+                    //ContentFrame.Navigate(typeof(MusicPage));
+                    break;
+
+                case "content":
+                    //ContentFrame.Navigate(typeof(MyContentPage));
+                    break;
+            }
+        }
+
+        private void MenuFlyoutItem_Click_Plain(object sender, RoutedEventArgs e)
+        {
+            string str = "fsdafds";
+        }
+
+        private void MenuFlyoutItem_Click_Rich(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -8,7 +8,52 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <NavigationView x:Name="MainNav" 
+                    IsBackButtonVisible="Collapsed" 
+                    PaneDisplayMode="Auto" 
+                    IsSettingsVisible="True"
+                    ItemInvoked="NavView_ItemInvoked">
+        
+        <!--添加子选项-->
+        <NavigationView.MenuItems>
+            <!--主页-->
+            <NavigationViewItem x:Uid="HomeNavItem" Content="Home" Tag="home">
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xE10F;"/>
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+            <NavigationViewItemSeparator/>
+            <!--音频测试-->
+            <!--<NavigationViewItemHeader Content="鸿合设备测试"/>-->
+            <NavigationViewItem x:Uid="AudioNavItem" Icon="Audio" Content="音频" Tag="audio"/>
+            <NavigationViewItem x:Uid="CameraNavItem" Icon="Camera" Content="摄像头" Tag="camera"/>
+        </NavigationView.MenuItems>
+        <!--添加APP信息-->
+        <NavigationView.PaneFooter >
+            <NavigationViewItem Icon="OtherUser" HorizontalAlignment="Left" />
+        </NavigationView.PaneFooter>
 
-    </Grid>
+
+        <StackPanel>
+
+            <!--菜单-->
+            <MenuBar>
+                <!--文件-->
+                <MenuBarItem Title="File">
+                    <MenuFlyoutSubItem Text="New">
+                        <MenuFlyoutItem Text="Plain Text Document" Click="MenuFlyoutItem_Click_Plain"/>
+                        <MenuFlyoutItem Text="Plain Text Document" Click="MenuFlyoutItem_Click_Rich"/>
+                    </MenuFlyoutSubItem>
+                </MenuBarItem>
+
+            </MenuBar>
+            <!--主显示内容-->
+            <ScrollViewer>
+
+
+                <Frame x:Name="ContentFrame" Padding="12,0,12,24" IsTabStop="True"/>
+            </ScrollViewer>
+        </StackPanel>
+
+    </NavigationView>
 </Page>
